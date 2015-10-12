@@ -4,8 +4,8 @@
         <reference name="head">
             <action method="addItem" ifconfig="easy_flags/general/enabled"><type>skin_css</type><name>tm/easyflags/css/easyflags.css</name></action>
         </reference>
-		<reference name="store_language">
-			<action method="setTemplate" ifconfig="easy_flags/general/enabled"><template>tm/easyflags/flags.phtml</template></action>
-		</reference>
+        <reference name="store_language">
+            <action method="setTemplate" ifconfig="easy_flags/general/enabled"><template>tm/easyflags/flags.phtml</template></action>
+        </reference>
     </default>
 </layout>
