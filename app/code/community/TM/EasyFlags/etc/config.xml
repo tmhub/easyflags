@@ -2,7 +2,7 @@
 <config>
     <modules>
         <TM_EasyFlags>
-            <version>2.0.0</version>
+            <version>2.1.0</version>
         </TM_EasyFlags>
     </modules>
     <global>
@@ -18,12 +18,12 @@
 				<enabled>0</enabled>
 			</general>
         </easyflags>
-    </default>				
+    </default>
     <frontend>
         <layout>
             <updates>
                 <easyflags>
-                    <file>easyflags.xml</file>
+                    <file>tm/easyflags.xml</file>
                 </easyflags>
             </updates>
         </layout>

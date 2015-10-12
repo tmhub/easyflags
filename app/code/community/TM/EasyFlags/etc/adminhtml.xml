@@ -9,7 +9,7 @@
 							<config>
 								<children>
 									<easy_flags translate="title" module="easyflags">
-										<title>Easy Flags Section</title>
+										<title>Easy Flags</title>
 										<sort_order>51</sort_order>
 									</easy_flags>
 								</children>
