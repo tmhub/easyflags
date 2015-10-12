@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<layout version="0.1.0">
+    <default>
+        <reference name="head">
+            <action method="addItem" ifconfig="easy_flags/general/enabled"><type>skin_css</type><name>css/easyflags.css</name></action>
+        </reference>
+		<reference name="store_language">
+			<action method="setTemplate" ifconfig="easy_flags/general/enabled"><template>easyflags/flags.phtml</template></action>
+		</reference>
+    </default>
+</layout>
