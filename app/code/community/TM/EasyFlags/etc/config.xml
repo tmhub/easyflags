@@ -42,10 +42,15 @@
         </translate>
     </adminhtml>
     <default>
-        <easyflags>
+        <subscriptionchecker>
+            <ignored_sections>
+                <easy_flags/>
+            </ignored_sections>
+        </subscriptionchecker>
+        <easy_flags>
             <general>
                 <enabled>0</enabled>
             </general>
-        </easyflags>
+        </easy_flags>
     </default>
 </config>
