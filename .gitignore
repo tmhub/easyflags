@@ -1,0 +1,5 @@
+build/*
+!build/gulpfile.js
+!build/package.json
+!build/README.md
+media/easyflags/stores
