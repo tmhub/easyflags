@@ -11,6 +11,11 @@
                 <class>TM_EasyFlags_Helper</class>
             </easyflags>
         </helpers>
+        <models>
+            <easyflags>
+                <class>TM_EasyFlags_Model</class>
+            </easyflags>
+        </models>
     </global>
     <frontend>
         <layout>
@@ -30,7 +35,26 @@
             </modules>
         </translate>
     </frontend>
+
     <adminhtml>
+        <events>
+            <adminhtml_store_edit_form_prepare_form>
+                <observers>
+                    <easyflags>
+                        <class>easyflags/observer</class>
+                        <method>addFlagFliedToEditForm</method>
+                    </easyflags>
+                </observers>
+            </adminhtml_store_edit_form_prepare_form>
+            <core_block_abstract_to_html_after>
+                <observers>
+                    <easyflags>
+                        <class>easyflags/observer</class>
+                        <method>addFlagToManageStoresGrid</method>
+                    </easyflags>
+                </observers>
+            </core_block_abstract_to_html_after>
+        </events>
         <translate>
             <modules>
                 <TM_EasyFlags>
@@ -41,6 +65,7 @@
             </modules>
         </translate>
     </adminhtml>
+
     <default>
         <subscriptionchecker>
             <ignored_sections>
@@ -53,4 +78,5 @@
             </general>
         </easy_flags>
     </default>
+
 </config>
