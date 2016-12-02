@@ -1,0 +1,7 @@
+<?php
+    $store = $this->getStoreObject();
+?>
+<?php if ($imgSrc = Mage::helper('easyflags')->getImageUrl($store)): ?>
+<img src="<?php echo $imgSrc; ?>" style="vertical-align: middle;">
+<?php endif; ?>
+<?php echo $this->getOriginalHtml(); ?>

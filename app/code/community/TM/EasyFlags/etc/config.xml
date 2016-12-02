@@ -1,22 +1,49 @@
 <?xml version="1.0"?>
 <config>
+
     <modules>
         <TM_EasyFlags>
-            <version>2.1.0.1</version>
+            <version>3.0.0</version>
         </TM_EasyFlags>
     </modules>
+
     <global>
+        <blocks>
+            <easyflags>
+                <class>TM_EasyFlags_Block</class>
+            </easyflags>
+        </blocks>
         <helpers>
             <easyflags>
                 <class>TM_EasyFlags_Helper</class>
             </easyflags>
         </helpers>
+        <resources>
+            <easyflags_setup>
+                <setup>
+                    <module>TM_EasyFlags</module>
+                </setup>
+            </easyflags_setup>
+        </resources>
         <models>
             <easyflags>
                 <class>TM_EasyFlags_Model</class>
+                <resourceModel>easyflags_resource</resourceModel>
             </easyflags>
+            <easyflags_resource>
+                <class>TM_EasyFlags_Model_Resource</class>
+                <entities>
+                    <store>
+                        <table>tm_easyflag_store</table>
+                    </store>
+                    <storegroup>
+                        <table>tm_easyflag_storegroup</table>
+                    </storegroup>
+                </entities>
+            </easyflags_resource>
         </models>
     </global>
+
     <frontend>
         <layout>
             <updates>
@@ -54,6 +81,14 @@
                     </easyflags>
                 </observers>
             </core_block_abstract_to_html_after>
+            <store_edit>
+                <observers>
+                    <easyflags>
+                        <class>easyflags/observer</class>
+                        <method>saveFlagsData</method>
+                    </easyflags>
+                </observers>
+            </store_edit>
         </events>
         <translate>
             <modules>

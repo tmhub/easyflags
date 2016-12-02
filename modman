@@ -1,4 +1,5 @@
 app/code/community/TM/EasyFlags                             app/code/community/TM/EasyFlags
+app/design/adminhtml/base/default/template/tm/easyflags     app/design/adminhtml/base/default/template/tm/easyflags
 app/design/frontend/base/default/layout/tm/easyflags.xml    app/design/frontend/base/default/layout/tm/easyflags.xml
 app/design/frontend/base/default/template/tm/easyflags      app/design/frontend/base/default/template/tm/easyflags
 app/etc/modules/TM_EasyFlags.xml                            app/etc/modules/TM_EasyFlags.xml
