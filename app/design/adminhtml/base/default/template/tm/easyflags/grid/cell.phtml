@@ -2,6 +2,8 @@
     $store = $this->getStoreObject();
 ?>
 <?php if ($imgSrc = Mage::helper('easyflags')->getImageUrl($store)): ?>
-<img src="<?php echo $imgSrc; ?>" style="vertical-align: middle;">
+<a href="<?=$this->getLinkUrl();?>" title="<?=$this->__('Id').': '.$store->getId();?>">
+    <img src="<?=$imgSrc;?>" style="vertical-align: middle; max-width: 100px; max-height: 30px;">
+</a>
 <?php endif; ?>
 <?php echo $this->getOriginalHtml(); ?>

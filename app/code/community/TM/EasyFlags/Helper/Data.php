@@ -40,4 +40,22 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
             . $image;
     }
 
+    public function getImagePath($store)
+    {
+        $image = $this->getImage($store);
+        if (!$image) {
+            return '';
+        }
+        return $this->getBaseDir()
+            . $image;
+    }
+
+    public function getBaseDir()
+    {
+        return rtrim(Mage::getBaseDir('media'), DS)
+            . DS
+            . trim('easyflags', DS)
+            . DS;
+    }
+
 }
