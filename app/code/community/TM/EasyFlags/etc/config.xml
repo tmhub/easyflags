@@ -89,6 +89,22 @@
                     </easyflags>
                 </observers>
             </store_edit>
+            <store_add>
+                <observers>
+                    <easyflags>
+                        <class>easyflags/observer</class>
+                        <method>saveFlagsData</method>
+                    </easyflags>
+                </observers>
+            </store_add>
+            <store_group_save>
+                <observers>
+                    <easyflags>
+                        <class>easyflags/observer</class>
+                        <method>saveFlagsData</method>
+                    </easyflags>
+                </observers>
+            </store_group_save>
         </events>
         <translate>
             <modules>
@@ -110,6 +126,7 @@
         <easy_flags>
             <general>
                 <enabled>0</enabled>
+                <media_dir>easyflags</media_dir>
             </general>
         </easy_flags>
     </default>

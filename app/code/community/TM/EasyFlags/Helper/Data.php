@@ -3,46 +3,56 @@
 class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
 {
 
+    protected $_modelNameMapping = array(
+        'Mage_Core_Model_Store' => 'easyflags/store',
+        'Mage_Core_Model_Store_Group' => 'easyflags/store_group'
+    );
+
     /**
-     * get easyflags image for store
-     * @return mixed string| bool (FALSE if store not found)
+     * get easyflags image for store or store group
+     *
+     * @param  mixed $object Mage_Core_Model_Store|..._Store_Group
+     * @return mixed string|bool (FALSE if store not found)
      */
-    public function getImage($store)
+    public function getImage($object)
     {
-
-        if (is_object($store)) {
-            $storeId = $store->getId();
-        } else {
-            $storeId = (int)$store;
-        }
-
-        if (!$storeId) {
+        $modelName = $this->getModelName($object);
+        if (!$modelName) {
             return false;
         }
-
-        return Mage::getModel('easyflags/store')
-            ->load($storeId)
+        return Mage::getModel($modelName)
+            ->load($object->getId())
             ->getImage();
     }
 
     /**
-     * get image url
+     * get easyflags image url for store or store group
+     *
+     * @param  mixed $object Mage_Core_Model_Store|..._Store_Group
      * @return string
      */
-    public function getImageUrl($store)
+    public function getImageUrl($object)
     {
-        $image = $this->getImage($store);
+        $image = $this->getImage($object);
         if (!$image) {
             return '';
         }
-        return Mage::getBaseUrl('media')
-            . 'easyflags/'
+        return rtrim(Mage::getBaseUrl('media'), '/')
+            . '/'
+            . trim(Mage::getStoreConfig('easy_flags/general/media_dir'), DS)
+            . '/'
             . $image;
     }
 
-    public function getImagePath($store)
+    /**
+     * get easyflags image path for store or store group
+     *
+     * @param  mixed $object Mage_Core_Model_Store|..._Store_Group
+     * @return string
+     */
+    public function getImagePath($object)
     {
-        $image = $this->getImage($store);
+        $image = $this->getImage($object);
         if (!$image) {
             return '';
         }
@@ -54,8 +64,22 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
     {
         return rtrim(Mage::getBaseDir('media'), DS)
             . DS
-            . trim('easyflags', DS)
+            . trim(Mage::getStoreConfig('easy_flags/general/media_dir'), DS)
             . DS;
+    }
+
+    /**
+     * get easyflags model name for object
+     *
+     * @param  mixed $object Mage_Core_Model_Store|..._Store_Group
+     * @return string
+     */
+    public function getModelName($object)
+    {
+        if (!isset($this->_modelNameMapping[get_class($object)])) {
+            return false;
+        }
+        return $this->_modelNameMapping[get_class($object)];
     }
 
 }

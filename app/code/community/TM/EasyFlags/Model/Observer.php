@@ -2,6 +2,9 @@
 
 class TM_EasyFlags_Model_Observer
 {
+
+    protected $_fieldNameInForm = 'easyflags_image';
+
     /**
      * listen event adminhtml_block_html_before to add flag pic to grid
      * @param mixed $observer [description]
@@ -28,23 +31,24 @@ class TM_EasyFlags_Model_Observer
         $object = $block->getData('object');
         $transport = $observer->getData('transport');
 
-        // check class object
-        switch (get_class($object)) {
-            // store view
-            case 'Mage_Core_Model_Store':
-                $newCell = $block->getLayout()
-                    ->createBlock('adminhtml/template')
-                    ->setTemplate('tm/easyflags/grid/cell.phtml')
-                    ->setLinkUrl($block->getLinkUrl())
-                    ->setStoreObject($object)
-                    ->setOriginalHtml($transport->getHtml());
-                // set new Html
-                $transport->setHtml($newCell->toHtml());
-                break;
+        // check if we can render easyflag image
+        if ($this->_helper()->getModelName($object)) {
+            $newCell = $block->getLayout()
+                ->createBlock('adminhtml/template')
+                ->setTemplate('tm/easyflags/grid/cell.phtml')
+                ->setLinkUrl($block->getLinkUrl())
+                ->setStoreObject($object)
+                ->setOriginalHtml($transport->getHtml());
+            // set new Html
+            $transport->setHtml($newCell->toHtml());
         }
 
     }
 
+    /**
+     * listen event adminhtml_store_edit_form_prepare_form to add easyflags set
+     * @param Varien_Event_Observer $observer
+     */
     public function addFlagFliedToEditForm($observer)
     {
 
@@ -54,24 +58,25 @@ class TM_EasyFlags_Model_Observer
 
             case 'group':
             case 'store':
-                $storeModel = Mage::registry('store_data');
+                // depending on $storeType, registry('store_data') can containe
+                // either Mage_Core_Model_Store, or Mage_Core_Model_Store_Group
+                $storeObject = Mage::registry('store_data');
                 $block = $observer->getData('block');
                 $form = $block->getForm();
                 // set form Encryption Type that allows to upload files
                 $form->setEnctype('multipart/form-data');
                 // add easyflags fieldset to form for store view and store group
                 $fieldset = $form->addFieldset('easyflags_fieldset', array(
-                    'legend' => Mage::helper('easyflags')->__('Easy Flags')
+                    'legend' => $this->_helper()->__('Easy Flags')
                 ));
                 $fieldset->addField(
-                    $storeType . '_easyflags_image',
+                    $this->_fieldNameInForm,
                     'image',
                     array(
-                        'name'  => $storeType . '_easyflags_image',
-                        'label' => Mage::helper('easyflags')->__('Image'),
-                        'title' => Mage::helper('easyflags')->__('Image'),
-                        'value' => Mage::helper('easyflags')
-                                    ->getImageUrl($storeModel)
+                        'name'  => $this->_fieldNameInForm,
+                        'label' => $this->_helper()->__('Image'),
+                        'title' => $this->_helper()->__('Image'),
+                        'value' => $this->_helper()->getImageUrl($storeObject)
                     )
                 );
 
@@ -81,20 +86,38 @@ class TM_EasyFlags_Model_Observer
 
     }
 
+    /**
+     * listen events store_edit, store_add, store_group_save to save flags data
+     * @param Varien_Event_Observer $observer
+     */
     public function saveFlagsData($observer)
     {
-        if ($observer->hasData('store')) {
-            // save flags data fro storeview
-            $storeModel = $observer->getData('store');
-            $storeModel->setEasyflagsImage(
-                    $this->getRequest()->getPost('store_easyflags_image')
-                );
-            $this->_uploadImage($storeModel);
-            $easyflagsModel = Mage::getModel('easyflags/store')
-                ->setId($storeModel->getId())
-                ->setImage($storeModel->getEasyflagsImage());
-            $this->_saveFlags($easyflagsModel);
+        // save flags data for storeview | store group
+        //
+        if ($observer->hasData('store')){
+            $storeObject = $observer->getData('store');
+        } elseif ($observer->hasData('group')) {
+            $storeObject = $observer->getData('group');
+        } else {
+            return;
         }
+
+        $modelName = $this->_helper()->getModelName($storeObject);
+        if (!$modelName) {
+            return;
+        }
+
+        $storeObject->setEasyflagsImage(
+                $this->getRequest()->getPost($this->_fieldNameInForm)
+            );
+
+        $this->_uploadImage($storeObject);
+        $easyflagsModel = Mage::getModel($modelName)
+            ->setId($storeObject->getId())
+            ->setImage($storeObject->getEasyflagsImage());
+
+        $this->_saveFlags($easyflagsModel);
+
     }
 
     public function getRequest()
@@ -104,27 +127,29 @@ class TM_EasyFlags_Model_Observer
 
     protected function _uploadImage($object)
     {
-        $newImage = isset($_FILES['store_easyflags_image']) ?
-            $_FILES['store_easyflags_image'] : false;
+        $newImage = isset($_FILES[$this->_fieldNameInForm]) ?
+            $_FILES[$this->_fieldNameInForm] : false;
 
         $oldImage = $object->getEasyflagsImage();
 
 
         // check if we should delete old image
         if (is_array($oldImage) && !empty($oldImage['delete'])) {
-            $oldImagePath = Mage::helper('easyflags')->getImagePath($object);
+            $oldImagePath = $this->_helper()->getImagePath($object);
             @unlink($oldImagePath);
-            $object ->setEasyflagsImage('');
+            $object->setEasyflagsImage('');
+        } else {
+            $object->setEasyflagsImage($this->_helper()->getImage($object));
         }
 
         if (isset($newImage['name']) && $newImage['name']) {
             try {
-                $uploader = new Varien_File_Uploader('store_easyflags_image');
+                $uploader = new Varien_File_Uploader($this->_fieldNameInForm);
                 $uploader->setAllowedExtensions(
                         array('jpg','jpeg','gif','png', 'bmp')
                     );
                 $uploader->setAllowRenameFiles(true);
-                $uploader->save(Mage::helper('easyflags')->getBaseDir());
+                $uploader->save($this->_helper()->getBaseDir());
                 $object->setEasyflagsImage($uploader->getUploadedFileName());
             } catch (Exception $e) {
                 $object->setEasyflagsImage('');
@@ -141,7 +166,7 @@ class TM_EasyFlags_Model_Observer
             $this->_getSession()->addError($e->getMessage());
         } catch (Exception $e) {
             $this->_getSession()->addException($e,
-                    Mage::helper('easyflags')
+                    $this->_helper()
                         ->__('An error occurred while saving EasyFlags data.')
                 );
         }
@@ -155,6 +180,14 @@ class TM_EasyFlags_Model_Observer
     protected function _getSession()
     {
         return Mage::getSingleton('adminhtml/session');
+    }
+
+    /**
+     * Retrive easyflags helper object
+     */
+    protected function _helper()
+    {
+        return Mage::helper('easyflags');
     }
 
 }
