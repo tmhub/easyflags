@@ -1,9 +1,9 @@
 <?php if(count($this->getStores())>1): ?>
     <div class="form-language" id="easyflags">
         <?php foreach ($this->getStores() as $_lang): ?>
-            <?php $img = Mage::getStoreConfig('easy_flags/general/store_image', $_lang->getCode()); ?>
+            <?php $img = Mage::helper('easyflags')->getImageUrl($_lang); ?>
             <a href="<?php echo $_lang->getCurrentUrl() ?>">
-                <img src="<?php echo Mage::getBaseUrl('media') . 'easyflags/' . $img ?>" alt="<?php echo $this->htmlEscape($_lang->getName()) ?>"/>
+                <img src="<?php echo $img ?>" alt="<?php echo $this->htmlEscape($_lang->getName()) ?>"/>
             </a>
         <?php endforeach; ?>
     </div>
