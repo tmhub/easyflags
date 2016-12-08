@@ -3,6 +3,11 @@
     <default>
         <reference name="head">
             <action method="addItem" ifconfig="easy_flags/general/enabled"><type>skin_css</type><name>tm/easyflags/css/easyflags.css</name></action>
+            <action method="addItem" ifconfig="easy_flags/general/enabled">
+                <type>skin_js</type>
+                <name>tm/easyflags/js/easyflags.js</name>
+                <params>defer</params>
+            </action>
         </reference>
         <reference name="store_language">
             <action method="setTemplate" ifconfig="easy_flags/general/enabled"><template>tm/easyflags/flags.phtml</template></action>
