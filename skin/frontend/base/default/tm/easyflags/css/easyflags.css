@@ -2,3 +2,8 @@
     float: left;
     margin-right: 5px;
 }
+
+.chosen-container .flag {
+    max-height: 16px;
+    vertical-align: middle;
+}
