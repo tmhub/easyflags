@@ -1,0 +1,16 @@
+.chosen-container-single .chosen-single span img,
+.chosen-container .chosen-results li img {
+    display: inline-block;
+    max-height: 15px;
+    vertical-align: middle;
+}
+.chosen-container-single .chosen-single span i,
+.chosen-container .chosen-results li i {
+    font-style: inherit;
+    vertical-align: middle;
+}
+.chosen-container .chosen-results li.image-nowrap {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}

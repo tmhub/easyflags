@@ -4,5 +4,7 @@ app/design/frontend/base/default/layout/tm/easyflags.xml    app/design/frontend/
 app/design/frontend/base/default/template/tm/easyflags      app/design/frontend/base/default/template/tm/easyflags
 app/etc/modules/TM_EasyFlags.xml                            app/etc/modules/TM_EasyFlags.xml
 app/locale/en_US/TM_EasyFlags.csv                           app/locale/en_US/TM_EasyFlags.csv
+js/tm/lib/chosen.plugin/image.js                            js/tm/lib/chosen.plugin/image.js
+js/tm/lib/chosen.plugin/image.css                           js/tm/lib/chosen.plugin/image.css
 media/easyflags                                             media/easyflags
 skin/frontend/base/default/tm/easyflags                     skin/frontend/base/default/tm/easyflags

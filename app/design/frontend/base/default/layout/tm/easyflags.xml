@@ -2,15 +2,45 @@
 <layout version="0.1.0">
     <default>
         <reference name="head">
-            <action method="addItem" ifconfig="easy_flags/general/enabled"><type>skin_css</type><name>tm/easyflags/css/easyflags.css</name></action>
+            <!-- Load Event Simulate (requieres TM Core module) -->
+            <action method="addJs" ifconfig="easy_flags/general/enabled">
+                <script>tm/lib/event.simulate.js</script>
+                <params>defer</params>
+            </action>
+            <!-- Load Chosen (requieres TM Core module) -->
+            <action method="addJs" ifconfig="easy_flags/general/enabled">
+                <script>tm/lib/chosen/chosen.proto.js</script>
+                <params>defer</params>
+            </action>
+            <action method="addItem" ifconfig="easy_flags/general/enabled">
+                <type>js_css</type>
+                <name>tm/lib/chosen/chosen.css</name>
+                <params>media="all"</params>
+            </action>
+            <!-- Load Chosen Plugin - Image -->
+            <action method="addJs" ifconfig="easy_flags/general/enabled">
+                <script>tm/lib/chosen.plugin/image.js</script>
+                <params>defer</params>
+            </action>
+            <action method="addItem" ifconfig="easy_flags/general/enabled">
+                <type>js_css</type>
+                <name>tm/lib/chosen.plugin/image.css</name>
+                <params>media="all"</params>
+            </action>
             <action method="addItem" ifconfig="easy_flags/general/enabled">
                 <type>skin_js</type>
                 <name>tm/easyflags/js/easyflags.js</name>
                 <params>defer</params>
             </action>
+            <action method="addItem" ifconfig="easy_flags/general/enabled">
+                <type>skin_css</type>
+                <name>tm/easyflags/css/easyflags.css</name>
+            </action>
         </reference>
         <reference name="store_language">
-            <action method="setTemplate" ifconfig="easy_flags/general/enabled"><template>tm/easyflags/flags.phtml</template></action>
+            <action method="setTemplate" ifconfig="easy_flags/general/enabled">
+                <template>tm/easyflags/flags.phtml</template>
+            </action>
         </reference>
     </default>
 </layout>

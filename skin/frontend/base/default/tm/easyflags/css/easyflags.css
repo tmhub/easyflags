@@ -1,9 +1,40 @@
-#easyflags a {
-    float: left;
-    margin-right: 5px;
+.easyflags-select {
+    min-width: 100px;
+    height: 20px;
 }
-
-.chosen-container .flag {
-    max-height: 16px;
+.easyflags-select .flag {
+    display: inline-block;
+    max-height: 18px;
     vertical-align: middle;
+}
+.easyflags-select.chosen-container-single .chosen-single {
+    border-radius: 1px;
+    height: 20px;
+    line-height: 18px;
+    padding: 0 0 0 4px;
+}
+.easyflags-select.chosen-container .chosen-results li
+{
+    padding: 4px 3px;
+}
+.easyflags-select.chosen-container-single .chosen-drop {
+    border-radius: 0 0 1px 1px;
+}
+.easyflags-select.chosen-container-single .chosen-single div b,
+.easyflags-select.chosen-container-active.chosen-with-drop .chosen-single div b {
+    background-position-y: 0;
+}
+/* uncomment code below if you want to hide selected options */
+/*
+.easyflags-select .chosen-results li.result-selected {
+    display: none;
+}
+*/
+/* animated easyflags selector apearing */
+.form-language {
+    transition: opacity 200ms ease-in-out;
+    opacity: 1;
+}
+.easyflags-hidden {
+    opacity: 0;
 }
