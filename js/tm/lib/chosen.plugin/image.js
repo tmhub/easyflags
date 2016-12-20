@@ -2,7 +2,7 @@
 
     var attrSrc = 'data-image-url';
     var optionTemplate = new Template(
-        '<img src="#{flag}"/><i>#{value}</i>'
+        '<img src="#{flag}"/> <i>#{value}</i>'
     );
 
     function _assignOptionFlag (option, html) {
@@ -24,7 +24,10 @@
     }
 
     function _assignValueFlag (option, html) {
-        if (typeof option !== 'undefined' && option.hasAttribute(attrSrc)) {
+        if (typeof option === 'undefined' || typeof html === 'undefined') {
+            return html;
+        }
+        if (option.hasAttribute(attrSrc)) {
             var data = {};
             data.value = html;
             data.flag = option.getAttribute(attrSrc);
@@ -45,14 +48,15 @@
         }
     );
 
-    Chosen.prototype.choice_label = Chosen.prototype.choice_label.wrap(
-        function (originalMethod, item) {
-            var html = originalMethod(item);
-            return _assignValueFlag(
-                    this.form_field.options[item.array_index],
-                    html
-                );
-        }
-    );
+    Chosen.prototype.single_set_selected_text =
+        Chosen.prototype.single_set_selected_text.wrap(
+            function (originalMethod, text) {
+                html = _assignValueFlag(
+                        this.form_field[this.form_field.selectedIndex],
+                        text
+                    );
+                return originalMethod(html);
+            }
+        );
 
 })();

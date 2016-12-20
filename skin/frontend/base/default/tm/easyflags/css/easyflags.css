@@ -1,6 +1,6 @@
 .easyflags-select {
-    min-width: 100px;
     height: 20px;
+    min-width: 100px;
 }
 .easyflags-select .flag {
     display: inline-block;
@@ -13,9 +13,12 @@
     line-height: 18px;
     padding: 0 0 0 4px;
 }
-.easyflags-select.chosen-container .chosen-results li
-{
+.easyflags-select.chosen-container .chosen-results li {
     padding: 4px 3px;
+    color: #444;
+}
+.easyflags-select.chosen-container .chosen-results li.highlighted {
+    color: #fff;
 }
 .easyflags-select.chosen-container-single .chosen-drop {
     border-radius: 0 0 1px 1px;
@@ -25,11 +28,10 @@
     background-position-y: 0;
 }
 /* uncomment code below if you want to hide selected options */
-/*
 .easyflags-select .chosen-results li.result-selected {
-    display: none;
+/*    display: none; */
 }
-*/
+
 /* animated easyflags selector apearing */
 .form-language {
     transition: opacity 200ms ease-in-out;
