@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <layout version="0.1.0">
     <default>
+
         <reference name="head">
             <!-- Load Event Simulate (requieres TM Core module) -->
             <action method="addJs" ifconfig="easy_flags/general/enabled">
@@ -37,10 +38,28 @@
                 <name>tm/easyflags/css/easyflags.css</name>
             </action>
         </reference>
+
         <reference name="store_language">
             <action method="setTemplate" ifconfig="easy_flags/general/enabled">
-                <template>tm/easyflags/flags.phtml</template>
+                <template helper="easyflags/getLanguageSwitcherTemplate" />
+            </action>
+            <!-- <action method="insert">
+                <blockName>store_switcher</blockName>
+                <alias>store_switcher</alias>
+            </action> -->
+        </reference>
+
+        <reference name="store_switcher">
+            <action method="setTemplate" ifconfig="easy_flags/general/enabled">
+                <template helper="easyflags/getStoreSwitcherTemplate" />
             </action>
         </reference>
+
+        <reference name="footer">
+            <!-- <action method="unsetChild">
+                <name>store_switcher</name>
+            </action> -->
+        </reference>
+
     </default>
 </layout>

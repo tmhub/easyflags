@@ -37,7 +37,8 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
         if (!$image) {
             return '';
         }
-        return rtrim(Mage::getBaseUrl('media'), '/')
+        $urlMedia = Mage::getBaseUrl('media', $this->_getRequest()->isSecure());
+        return rtrim($urlMedia, '/')
             . '/'
             . trim(Mage::getStoreConfig('easy_flags/general/media_dir'), DS)
             . '/'
@@ -80,6 +81,42 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
             return false;
         }
         return $this->_modelNameMapping[get_class($object)];
+    }
+
+    /**
+     * get template name for store view switcher
+     * @return string
+     */
+    public function getLanguageSwitcherTemplate()
+    {
+        $type = Mage::getStoreConfig('easy_flags/lang_switcher/type');
+        if ($type != 'default') {
+            $template = 'tm/easyflags/language/' . $type . '.phtml';
+        } else {
+            $template = 'page/switch/languages.phtml';
+        }
+        return $template;
+    }
+
+    public function isLableLangSwitcherEnabled()
+    {
+        return Mage::getStoreConfigFlag('easy_flags/lang_switcher/label');
+    }
+
+    public function getStoreSwitcherTemplate()
+    {
+        $type = Mage::getStoreConfig('easy_flags/store_switcher/type');
+        if ($type != 'default') {
+            $template = 'tm/easyflags/store/' . $type . '.phtml';
+        } else {
+            $template = 'page/switch/stores.phtml';
+        }
+        return $template;;
+    }
+
+    public function isLableStoreSwitcherEnabled()
+    {
+        return Mage::getStoreConfigFlag('easy_flags/store_switcher/label');
     }
 
 }

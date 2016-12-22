@@ -128,6 +128,14 @@
                 <enabled>0</enabled>
                 <media_dir>easyflags</media_dir>
             </general>
+            <lang_switcher>
+                <type>dropdown</type>
+                <label>1</label>
+            </lang_switcher>
+            <store_switcher>
+                <type>dropdown</type>
+                <label>1</label>
+            </store_switcher>
         </easy_flags>
     </default>
 

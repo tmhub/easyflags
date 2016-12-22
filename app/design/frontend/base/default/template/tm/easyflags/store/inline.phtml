@@ -1,0 +1,18 @@
+<?php if(count($this->getStores())>1): ?>
+<div class="store-switcher easyflags-inline" id="easyflags">
+    <?php if(Mage::helper('easyflags')->isLableStoreSwitcherEnabled()): ?>
+    <span class="easyflags-label"><?php echo $this->__('Select Store:') ?></span>
+    <?php endif; ?>
+    <?php foreach ($this->getGroups() as $_group): ?>
+        <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_group); ?>
+        <?php $storeName = $this->htmlEscape($_group->getName()); ?>
+        <a href="<?php echo $_group->getCurrentUrl() ?>" title="<?php echo $storeName; ?>" class="flag-link">
+        <?php if ($flagSrc): ?>
+            <img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/>
+        <?php else: ?>
+            <span><?php echo substr($storeName, 0, 3);?></span>
+        <?php endif;?>
+        </a>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>

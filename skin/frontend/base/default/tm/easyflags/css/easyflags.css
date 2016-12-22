@@ -1,3 +1,25 @@
+
+.easyflags-inline .flag-link {
+    display: inline-block;
+    margin: 0 0 0 4px;
+    vertical-align: middle;
+    text-decoration: none;
+}
+
+.easyflags-inline .flag-link img{
+    vertical-align: middle;
+    display: block;
+    max-height: 20px;
+}
+
+.easyflags-inline .flag-link span {
+    background-color: rgba(0, 0, 0, 0.3);
+    color: #fff;
+    font-size: 0.9em;
+    padding: 3px;
+    text-transform: uppercase;
+}
+
 .easyflags-select {
     height: 20px;
     min-width: 100px;

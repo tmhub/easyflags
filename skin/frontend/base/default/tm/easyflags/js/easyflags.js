@@ -4,7 +4,7 @@ EasyFlagsSelect.prototype = {
     initialize: function (select, options = {}) {
         this.chosen = new Chosen(select, options);
         // show easy flags select
-        var parent = select.up('.form-language');
+        var parent = select.up('.easyflags-hidden');
         if (parent) {
             parent.removeClassName('easyflags-hidden');
         }
@@ -13,13 +13,20 @@ EasyFlagsSelect.prototype = {
 }
 
 document.observe("dom:loaded", function(){
-    window.easyFlagsSelect = new EasyFlagsSelect(
-        $('select-language'),
-        {
-            inherit_select_classes: true,
-            disable_search_threshold: 10,
-            width: 'auto'
+    $$(".easyflags-select").each(function(select){
+        if (typeof window.easyFlags === 'undefined') {
+            window.easyFlags = [];
         }
-    );
+        window.easyFlags.push(
+            new EasyFlagsSelect(
+                select,
+                {
+                    inherit_select_classes: true,
+                    disable_search_threshold: 10,
+                    width: 'auto'
+                }
+            )
+        );
+    });
 
 });

@@ -1,0 +1,19 @@
+<?php echo $this->getChildHtml('store_switcher'); ?>
+<?php if(count($this->getStores())>1): ?>
+<div class="form-language easyflags-inline" id="easyflags">
+    <?php if(Mage::helper('easyflags')->isLableLangSwitcherEnabled()): ?>
+    <span class="easyflags-label"><?php echo $this->__('Your Language:') ?></span>
+    <?php endif; ?>
+    <?php foreach ($this->getStores() as $_lang): ?>
+        <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_lang); ?>
+        <?php $storeName = $this->htmlEscape($_lang->getName()); ?>
+        <a href="<?php echo $_lang->getCurrentUrl() ?>" title="<?php echo $storeName; ?>" class="flag-link">
+        <?php if ($flagSrc): ?>
+            <img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/>
+        <?php else: ?>
+            <span><?php echo substr($storeName, 0, 3);?></span>
+        <?php endif;?>
+        </a>
+    <?php endforeach; ?>
+</div>
+<?php endif; ?>

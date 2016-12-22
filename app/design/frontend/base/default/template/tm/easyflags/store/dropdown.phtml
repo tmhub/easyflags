@@ -1,0 +1,14 @@
+<?php if(count($this->getGroups())>1): ?>
+<div class="store-switcher easyflags-hidden">
+    <?php if(Mage::helper('easyflags')->isLableStoreSwitcherEnabled()): ?>
+    <label for="select-store"><?php echo $this->__('Select Store:') ?></label>
+    <?php endif; ?>
+    <select id="select-store" title="<?php echo $this->__('Select Store') ?>" class="easyflags-select" onchange="location.href=this.value">
+    <?php foreach ($this->getGroups() as $_group): ?>
+        <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_group); ?>
+        <?php $_selected = ($_group->getId()==$this->getCurrentGroupId()) ? ' selected="selected"' : '' ?>
+        <option value="<?php echo $_group->getHomeUrl() ?>"<?php echo $_selected ?> data-image-url="<?php echo $flagSrc; ?>"><?php echo $this->escapeHtml($_group->getName()) ?></option>
+    <?php endforeach; ?>
+    </select>
+</div>
+<?php endif; ?>
