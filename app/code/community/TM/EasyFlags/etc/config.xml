@@ -45,13 +45,13 @@
     </global>
 
     <frontend>
-        <layout>
+        <tm_layout>
             <updates>
-                <easyflags>
+                <easyflags condition="easyflags/isEnabled">
                     <file>tm/easyflags.xml</file>
                 </easyflags>
             </updates>
-        </layout>
+        </tm_layout>
         <translate>
             <modules>
                 <TM_EasyFlags>

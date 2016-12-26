@@ -8,6 +8,11 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
         'Mage_Core_Model_Store_Group' => 'easyflags/store_group'
     );
 
+    public function isEnabled()
+    {
+        return Mage::getStoreConfigFlag('easy_flags/general/enabled');
+    }
+
     /**
      * get easyflags image for store or store group
      *
@@ -85,14 +90,16 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
 
     /**
      * get template name for store view switcher
+     * this method used in layout update to determinate switcher template
      * @return string
      */
     public function getLanguageSwitcherTemplate()
     {
         $type = Mage::getStoreConfig('easy_flags/lang_switcher/type');
-        if ($type != 'default') {
+        if ($type) {
             $template = 'tm/easyflags/language/' . $type . '.phtml';
         } else {
+            // layout should not go to ELSE since there is IFCONFIG in layout
             $template = 'page/switch/languages.phtml';
         }
         return $template;
@@ -109,6 +116,7 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
         if ($type != 'default') {
             $template = 'tm/easyflags/store/' . $type . '.phtml';
         } else {
+            // layout should not go to ELSE since there is IFCONFIG in layout
             $template = 'page/switch/stores.phtml';
         }
         return $template;;

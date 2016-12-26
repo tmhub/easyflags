@@ -4,61 +4,65 @@
 
         <reference name="head">
             <!-- Load Event Simulate (requieres TM Core module) -->
-            <action method="addJs" ifconfig="easy_flags/general/enabled">
+            <action method="addJs">
                 <script>tm/lib/event.simulate.js</script>
                 <params>defer</params>
             </action>
             <!-- Load Chosen (requieres TM Core module) -->
-            <action method="addJs" ifconfig="easy_flags/general/enabled">
+            <action method="addJs">
                 <script>tm/lib/chosen/chosen.proto.js</script>
                 <params>defer</params>
             </action>
-            <action method="addItem" ifconfig="easy_flags/general/enabled">
+            <action method="addItem">
                 <type>js_css</type>
                 <name>tm/lib/chosen/chosen.css</name>
                 <params>media="all"</params>
             </action>
             <!-- Load Chosen Plugin - Image -->
-            <action method="addJs" ifconfig="easy_flags/general/enabled">
+            <action method="addJs">
                 <script>tm/lib/chosen.plugin/image.js</script>
                 <params>defer</params>
             </action>
-            <action method="addItem" ifconfig="easy_flags/general/enabled">
+            <action method="addItem">
                 <type>js_css</type>
                 <name>tm/lib/chosen.plugin/image.css</name>
                 <params>media="all"</params>
             </action>
-            <action method="addItem" ifconfig="easy_flags/general/enabled">
+            <action method="addItem">
                 <type>skin_js</type>
                 <name>tm/easyflags/js/easyflags.js</name>
                 <params>defer</params>
             </action>
-            <action method="addItem" ifconfig="easy_flags/general/enabled">
+            <action method="addItem">
                 <type>skin_css</type>
                 <name>tm/easyflags/css/easyflags.css</name>
             </action>
         </reference>
 
         <reference name="store_language">
-            <action method="setTemplate" ifconfig="easy_flags/general/enabled">
+            <!-- set new template for language switcher -->
+            <action method="setTemplate" ifconfig="easy_flags/lang_switcher/type">
                 <template helper="easyflags/getLanguageSwitcherTemplate" />
             </action>
-            <!-- <action method="insert">
+            <!-- insert store switcher near language switcher -->
+            <action method="insert" ifconfig="easy_flags/store_switcher/move">
                 <blockName>store_switcher</blockName>
                 <alias>store_switcher</alias>
-            </action> -->
+            </action>
         </reference>
 
         <reference name="store_switcher">
-            <action method="setTemplate" ifconfig="easy_flags/general/enabled">
+            <!-- set new template for store switcher -->
+            <action method="setTemplate" ifconfig="easy_flags/store_switcher/type">
                 <template helper="easyflags/getStoreSwitcherTemplate" />
             </action>
         </reference>
 
         <reference name="footer">
-            <!-- <action method="unsetChild">
+            <!-- insert store switcher near language switcher -->
+            <action method="unsetChild" ifconfig="easy_flags/store_switcher/move">
                 <name>store_switcher</name>
-            </action> -->
+            </action>
         </reference>
 
     </default>

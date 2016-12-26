@@ -1,6 +1,9 @@
 <?php echo $this->getChildHtml('store_switcher'); ?>
 <?php if(count($this->getStores())>1): ?>
-<div class="form-language easyflags-hidden">
+<?php
+    $classes = 'easyflags-dropdown easyflags-hidden';
+?>
+<div class="form-language <?php echo $classes;?>">
     <?php if(Mage::helper('easyflags')->isLableLangSwitcherEnabled()): ?>
     <label for="select-language"><?php echo $this->__('Your Language:') ?></label>
     <?php endif; ?>

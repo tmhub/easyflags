@@ -1,5 +1,11 @@
 <?php if(count($this->getGroups())>1): ?>
-<div class="store-switcher easyflags-hidden">
+<?php
+    $classes = 'easyflags-dropdown easyflags-hidden';
+    if (Mage::getStoreConfig('easy_flags/store_switcher/move')) {
+        $classes .= ' easyflags-stores-moved';
+    }
+?>
+<div class="store-switcher <?php echo $classes;?>">
     <?php if(Mage::helper('easyflags')->isLableStoreSwitcherEnabled()): ?>
     <label for="select-store"><?php echo $this->__('Select Store:') ?></label>
     <?php endif; ?>
