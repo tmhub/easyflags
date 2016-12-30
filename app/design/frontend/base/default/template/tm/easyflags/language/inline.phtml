@@ -1,11 +1,11 @@
 <?php echo $this->getChildHtml('store_switcher'); ?>
 <?php if(count($this->getStores())>1): ?>
 <?php
-    $classes = 'easyflags-inline';
+    $classes = 'eflags-inline';
 ?>
-<div class="form-language <?php echo $classes;?>" id="easyflags-langs">
+<div class="form-language <?php echo $classes;?>">
     <?php if(Mage::helper('easyflags')->isLableLangSwitcherEnabled()): ?>
-    <span class="easyflags-label"><?php echo $this->__('Your Language:') ?></span>
+    <span class="eflags-label"><?php echo $this->__('Your Language:') ?></span>
     <?php endif; ?>
     <?php foreach ($this->getStores() as $_lang): ?>
         <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_lang); ?>

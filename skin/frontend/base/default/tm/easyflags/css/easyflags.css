@@ -1,18 +1,17 @@
-
-.easyflags-inline .flag-link {
+.eflags-inline .flag-link {
     display: inline-block;
     margin: 0 0 0 4px;
     vertical-align: middle;
     text-decoration: none;
 }
 
-.easyflags-inline .flag-link img{
+.eflags-inline .flag-link img{
     vertical-align: middle;
     display: block;
     max-height: 20px;
 }
 
-.easyflags-inline .flag-link span {
+.eflags-inline .flag-link span {
     background-color: rgba(0, 0, 0, 0.3);
     color: #fff;
     font-size: 0.9em;
@@ -20,37 +19,37 @@
     text-transform: uppercase;
 }
 
-.easyflags-select {
+.eflags-select {
     height: 20px;
     min-width: 100px;
 }
-.easyflags-select .flag {
+.eflags-select .flag {
     display: inline-block;
     max-height: 18px;
     vertical-align: middle;
 }
-.easyflags-select.chosen-container-single .chosen-single {
+.eflags-select.chosen-container-single .chosen-single {
     border-radius: 1px;
     height: 20px;
     line-height: 18px;
     padding: 0 0 0 4px;
 }
-.easyflags-select.chosen-container .chosen-results li {
+.eflags-select.chosen-container .chosen-results li {
     padding: 4px 3px;
     color: #444;
 }
-.easyflags-select.chosen-container .chosen-results li.highlighted {
+.eflags-select.chosen-container .chosen-results li.highlighted {
     color: #fff;
 }
-.easyflags-select.chosen-container-single .chosen-drop {
+.eflags-select.chosen-container-single .chosen-drop {
     border-radius: 0 0 1px 1px;
 }
-.easyflags-select.chosen-container-single .chosen-single div b,
-.easyflags-select.chosen-container-active.chosen-with-drop .chosen-single div b {
+.eflags-select.chosen-container-single .chosen-single div b,
+.eflags-select.chosen-container-active.chosen-with-drop .chosen-single div b {
     background-position-y: 0;
 }
 /* uncomment code below if you want to hide selected options */
-.easyflags-select .chosen-results li.result-selected {
+.eflags-select .chosen-results li.result-selected {
 /*    display: none; */
 }
 
@@ -59,6 +58,11 @@
     transition: opacity 200ms ease-in-out;
     opacity: 1;
 }
-.easyflags-hidden {
+.eflags-hidden {
     opacity: 0;
+}
+
+.store-switcher.eflags-stores-moved {
+    float: left;
+    margin-right: 10px;
 }

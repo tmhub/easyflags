@@ -1,13 +1,13 @@
 <?php echo $this->getChildHtml('store_switcher'); ?>
 <?php if(count($this->getStores())>1): ?>
 <?php
-    $classes = 'easyflags-dropdown easyflags-hidden';
+    $classes = 'eflags-dropdown eflags-hidden';
 ?>
 <div class="form-language <?php echo $classes;?>">
     <?php if(Mage::helper('easyflags')->isLableLangSwitcherEnabled()): ?>
     <label for="select-language"><?php echo $this->__('Your Language:') ?></label>
     <?php endif; ?>
-    <select id="select-language" title="<?php echo $this->__('Your Language') ?>" class="easyflags-select" onchange="window.location.href=this.value" >
+    <select id="select-language" title="<?php echo $this->__('Your Language') ?>" class="eflags-select" onchange="window.location.href=this.value" >
     <?php foreach ($this->getStores() as $_lang): ?>
         <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_lang); ?>
         <?php $_selected = ($_lang->getId() == $this->getCurrentStoreId()) ? ' selected="selected"' : '' ?>

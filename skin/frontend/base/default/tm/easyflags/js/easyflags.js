@@ -4,16 +4,16 @@ EasyFlagsSelect.prototype = {
     initialize: function (select, options = {}) {
         this.chosen = new Chosen(select, options);
         // show easy flags select
-        var parent = select.up('.easyflags-hidden');
+        var parent = select.up('.eflags-hidden');
         if (parent) {
-            parent.removeClassName('easyflags-hidden');
+            parent.removeClassName('eflags-hidden');
         }
     }
 
 }
 
 document.observe("dom:loaded", function(){
-    $$(".easyflags-select").each(function(select){
+    $$(".eflags-select").each(function(select){
         if (typeof window.easyFlags === 'undefined') {
             window.easyFlags = [];
         }

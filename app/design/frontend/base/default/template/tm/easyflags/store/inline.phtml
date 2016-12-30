@@ -1,13 +1,13 @@
 <?php if(count($this->getStores())>1): ?>
 <?php
-    $classes = 'easyflags-inline';
+    $classes = 'eflags-inline';
     if (Mage::getStoreConfig('easy_flags/store_switcher/move')) {
-        $classes .= ' easyflags-stores-moved';
+        $classes .= ' eflags-stores-moved';
     }
 ?>
-<div class="store-switcher <?php echo $classes;?>" id="easyflags-stores">
+<div class="store-switcher <?php echo $classes;?>">
     <?php if(Mage::helper('easyflags')->isLableStoreSwitcherEnabled()): ?>
-    <span class="easyflags-label"><?php echo $this->__('Select Store:') ?></span>
+    <span class="eflags-label"><?php echo $this->__('Select Store:') ?></span>
     <?php endif; ?>
     <?php foreach ($this->getGroups() as $_group): ?>
         <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_group); ?>
