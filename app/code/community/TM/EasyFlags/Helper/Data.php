@@ -119,7 +119,7 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
             // layout should not go to ELSE since there is IFCONFIG in layout
             $template = 'page/switch/stores.phtml';
         }
-        return $template;;
+        return $template;
     }
 
     public function isLableStoreSwitcherEnabled()
