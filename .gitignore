@@ -1,6 +1,2 @@
-build/*
-!build/gulpfile.js
-!build/package.json
-!build/README.md
 media/easyflags/*
 !media/easyflags/samples
