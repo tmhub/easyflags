@@ -129,11 +129,12 @@
                 <media_dir>easyflags</media_dir>
             </general>
             <lang_switcher>
-                <type>dropdown</type>
-                <label>1</label>
+                <type>inline</type>
+                <label>0</label>
             </lang_switcher>
             <store_switcher>
-                <type>dropdown</type>
+                <move>0</move>
+                <type>inline</type>
                 <label>1</label>
             </store_switcher>
         </easy_flags>

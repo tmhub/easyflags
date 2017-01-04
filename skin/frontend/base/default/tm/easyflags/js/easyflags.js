@@ -10,7 +10,7 @@ EasyFlagsSelect.prototype = {
         }
     }
 
-}
+};
 
 document.observe("dom:loaded", function(){
     $$(".eflags-select").each(function(select){
