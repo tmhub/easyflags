@@ -1,7 +1,6 @@
 var EasyFlagsSelect = Class.create();
 EasyFlagsSelect.prototype = {
-
-    initialize: function (select, options = {}) {
+    initialize: function (select, options) {
         this.chosen = new Chosen(select, options);
         // show easy flags select
         var parent = select.up('.eflags-hidden');
@@ -9,7 +8,6 @@ EasyFlagsSelect.prototype = {
             parent.removeClassName('eflags-hidden');
         }
     }
-
 };
 
 document.observe("dom:loaded", function(){
@@ -28,5 +26,4 @@ document.observe("dom:loaded", function(){
             )
         );
     });
-
 });
