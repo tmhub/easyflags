@@ -82,10 +82,11 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
      */
     public function getModelName($object)
     {
-        if (!isset($this->_modelNameMapping[get_class($object)])) {
-            return false;
+        foreach ($this->_modelNameMapping as $className => $model) {
+            if ($object instanceof $className)
+                return $model;
         }
-        return $this->_modelNameMapping[get_class($object)];
+        return false;
     }
 
     /**
