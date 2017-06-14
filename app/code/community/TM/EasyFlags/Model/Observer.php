@@ -149,6 +149,13 @@ class TM_EasyFlags_Model_Observer
                         array('jpg','jpeg','gif','png', 'bmp')
                     );
                 $uploader->setAllowRenameFiles(true);
+                if (@class_exists('Mage_Core_Model_File_Validator_Image')) {
+                    $uploader->addValidateCallback(
+                        Mage_Core_Model_File_Validator_Image::NAME,
+                        Mage::getModel('core/file_validator_image'),
+                        'validate'
+                    );
+                }
                 $uploader->save($this->_helper()->getBaseDir());
                 $object->setEasyflagsImage($uploader->getUploadedFileName());
             } catch (Exception $e) {
