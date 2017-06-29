@@ -1,8 +1,12 @@
+.flag-link {
+    vertical-align: middle;
+    text-decoration: none;
+}
+
 .eflags-inline .flag-link {
     display: inline-block;
     margin: 0 0 0 4px;
-    vertical-align: middle;
-    text-decoration: none;
+    text-transform: uppercase;
 }
 
 .eflags-inline .flag-link img{
@@ -16,7 +20,6 @@
     color: #fff;
     font-size: 0.9em;
     padding: 3px;
-    text-transform: uppercase;
 }
 
 .eflags-select {
@@ -67,7 +70,7 @@
     margin-right: 10px;
 }
 
-.eflags-popup .chosen-with-drop .chosen-drop {
+.eflags-popup .overlay {
     position: fixed;
     top: 0;
     bottom: 0;
@@ -78,19 +81,40 @@
     vertical-align: middle;
     text-align: center;
     width: 100%;
+    visibility: hidden;
 }
-.eflags-popup .chosen-with-drop .chosen-drop:before {
+
+.eflags-popup .overlay:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
     height: 100%;
 }
 
-.eflags-popup .chosen-container .chosen-results {
+.eflags-popup .popup {
     display: inline-block;
     min-width: 200px;
     padding: 10px;
     background-color: white;
     vertical-align: middle;
+    font-size: 1em;
+}
+
+.eflags-popup .popup h3 {
+    margin-bottom: 10px;
+}
+
+.eflags-popup .popup .flag-link {
+    display: block;
+    margin: 5px;
+    padding: 5px;
+}
+
+.eflags-popup .popup .flag-link:hover {
+    background-color: rgba(0, 0, 0, .05);
+}
+
+.eflags-popup .overlay:target {
+    visibility: visible;
 }
 /* read about :target */
