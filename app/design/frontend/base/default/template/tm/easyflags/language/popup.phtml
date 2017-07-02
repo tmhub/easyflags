@@ -1,24 +1,30 @@
+<?php echo $this->getChildHtml('store_switcher'); ?>
+<?php if(count($this->getStores())>1): ?>
 <?php
     $classes = 'eflags-popup';
+    $currentLang = Mage::app()->getStore();
 ?>
 <div class="form-language <?php echo $classes;?>">
     <?php if(Mage::helper('easyflags')->isLableLangSwitcherEnabled()): ?>
     <span class="eflags-label"><?php echo $this->__('Your Language:') ?></span>
     <?php endif; ?>
-    <a href="#language-popup">my lang</a>
+    <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($currentLang); ?>
+    <?php $storeName = $this->htmlEscape($currentLang->getName()); ?>
+    <a href="#language-popup" class="flag-link">
+        <?php if ($flagSrc):?><img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/><?php endif;?><span><?php echo $storeName; ?></span>
+    </a>
     <div id="language-popup" class="overlay">
         <div class="popup">
             <h3><?php echo $this->__('Your Language') ?></h3>
+            <a class="close" href="#">&times;</a>
             <?php foreach ($this->getStores() as $_lang): ?>
                 <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_lang); ?>
                 <?php $storeName = $this->htmlEscape($_lang->getName()); ?>
                 <a href="<?php echo $_lang->getCurrentUrl() ?>" title="<?php echo $storeName; ?>" class="flag-link">
-                <?php if ($flagSrc): ?>
-                    <img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/>
-                <?php endif;?>
-                    <span><?php echo $storeName;?></span>
+                <?php if ($flagSrc): ?><img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/><?php endif;?><span><?php echo $storeName;?></span>
                 </a>
             <?php endforeach; ?>
         </div>
     </div>
 </div>
+<?php endif; ?>

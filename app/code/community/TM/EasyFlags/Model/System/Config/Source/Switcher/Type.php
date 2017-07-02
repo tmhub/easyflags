@@ -20,6 +20,10 @@ class TM_EasyFlags_Model_System_Config_Source_Switcher_Type
                 'label' => Mage::helper('easyflags')->__('Inline')
             ),
             array(
+                'value' => 'popup',
+                'label' => Mage::helper('easyflags')->__('Popup')
+            ),
+            array(
                 'value' => '0',
                 'label' => Mage::helper('easyflags')->__('Default')
             )
@@ -38,6 +42,8 @@ class TM_EasyFlags_Model_System_Config_Source_Switcher_Type
                 age::helper('easyflags')->__('Dropdown'),
             'inline' =>
                 Mage::helper('easyflags')->__('Inline'),
+            'popup' =>
+                Mage::helper('easyflags')->__('Popup'),
             '0' =>
                 Mage::helper('easyflags')->__('Default')
         );

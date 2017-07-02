@@ -1,20 +1,7 @@
-.flag-link {
-    vertical-align: middle;
-    text-decoration: none;
-}
+.flag-link img { max-height: 20px; }
 
-.eflags-inline .flag-link {
-    display: inline-block;
-    margin: 0 0 0 4px;
-    text-transform: uppercase;
-}
-
-.eflags-inline .flag-link img{
-    vertical-align: middle;
-    display: block;
-    max-height: 20px;
-}
-
+.eflags-inline .flag-link { margin: 0 0 0 4px; text-transform: uppercase; text-decoration: none; }
+.eflags-inline .flag-link:hover { text-decoration: none; }
 .eflags-inline .flag-link span {
     background-color: rgba(0, 0, 0, 0.3);
     color: #fff;
@@ -22,53 +9,28 @@
     padding: 3px;
 }
 
-.eflags-select {
-    height: 20px;
-    min-width: 100px;
-}
-.eflags-select .flag {
-    display: inline-block;
-    max-height: 18px;
-    vertical-align: middle;
-}
+.eflags-select { height: 20px; min-width: 100px; }
+.eflags-select .flag { display: inline-block; max-height: 18px; vertical-align: middle; }
 .eflags-select.chosen-container-single .chosen-single {
     border-radius: 1px;
     height: 20px;
     line-height: 18px;
     padding: 0 0 0 4px;
 }
-.eflags-select.chosen-container .chosen-results li {
-    padding: 4px 3px;
-    color: #444;
-}
-.eflags-select.chosen-container .chosen-results li.highlighted {
-    color: #fff;
-}
-.eflags-select.chosen-container-single .chosen-drop {
-    border-radius: 0 0 1px 1px;
-}
+.eflags-select.chosen-container-single .chosen-single:hover { text-decoration: none; }
+.eflags-select.chosen-container .chosen-results li { padding: 4px 3px; color: #444; }
+.eflags-select.chosen-container .chosen-results li.highlighted { color: #fff; }
+.eflags-select.chosen-container-single .chosen-drop { border-radius: 0 0 1px 1px; }
 .eflags-select.chosen-container-single .chosen-single div b,
-.eflags-select.chosen-container-active.chosen-with-drop .chosen-single div b {
-    background-position-y: 0;
-}
+.eflags-select.chosen-container-active.chosen-with-drop .chosen-single div b { background-position-y: 0; }
 /* uncomment code below if you want to hide selected options */
-.eflags-select .chosen-results li.result-selected {
-/*    display: none; */
-}
+.eflags-select .chosen-results li.result-selected { /*display: none; */ }
 
 /* animated easyflags selector apearing */
-.form-language {
-    transition: opacity 200ms ease-in-out;
-    opacity: 1;
-}
-.eflags-hidden {
-    opacity: 0;
-}
+.form-language { transition: opacity 200ms ease-in-out; opacity: 1; }
+.eflags-hidden { opacity: 0; }
 
-.store-switcher.eflags-stores-moved {
-    float: left;
-    margin-right: 10px;
-}
+.store-switcher.eflags-stores-moved { float: left; margin-right: 10px; }
 
 .eflags-popup .overlay {
     position: fixed;
@@ -83,38 +45,31 @@
     width: 100%;
     visibility: hidden;
 }
-
 .eflags-popup .overlay:before {
     content: '';
     display: inline-block;
     vertical-align: middle;
     height: 100%;
 }
-
 .eflags-popup .popup {
+    background-color: white;
     display: inline-block;
     min-width: 200px;
     padding: 10px;
-    background-color: white;
+    position:relative;
     vertical-align: middle;
-    font-size: 1em;
+    box-shadow: 2px 2px 7px #777;
 }
-
-.eflags-popup .popup h3 {
-    margin-bottom: 10px;
+.eflags-popup .popup h3 { margin-bottom: 12px; }
+.eflags-popup .popup .close {
+    position: absolute;
+    top: 2px;
+    right: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
 }
-
-.eflags-popup .popup .flag-link {
-    display: block;
-    margin: 5px;
-    padding: 5px;
-}
-
-.eflags-popup .popup .flag-link:hover {
-    background-color: rgba(0, 0, 0, .05);
-}
-
-.eflags-popup .overlay:target {
-    visibility: visible;
-}
-/* read about :target */
+.eflags-popup .flag-link img { margin-right: 5px; }
+.eflags-popup .popup .flag-link { display: block; margin: 5px; padding: 5px; }
+.eflags-popup .popup .flag-link:hover { background-color: rgba(0, 0, 0, .05); }
+.eflags-popup .overlay:target { visibility: visible; }
