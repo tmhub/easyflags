@@ -1,6 +1,6 @@
 .flag-link img { max-height: 20px; }
 
-.eflags-inline .flag-link { margin: 0 0 0 4px; text-transform: uppercase; text-decoration: none; }
+.eflags-inline .flag-link { display: inline-block; margin: 0 0 0 4px; text-transform: uppercase; text-decoration: none; }
 .eflags-inline .flag-link:hover { text-decoration: none; }
 .eflags-inline .flag-link span {
     background-color: rgba(0, 0, 0, 0.3);
