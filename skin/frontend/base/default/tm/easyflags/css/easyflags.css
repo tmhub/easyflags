@@ -33,17 +33,19 @@
 .store-switcher.eflags-stores-moved { float: left; margin-right: 10px; }
 
 .eflags-popup .overlay {
+    background-color: rgba(0,0,0,.05);
+    display: none;
     position: fixed;
     top: 0;
     bottom: 0;
     left: 0;
     right: 0;
-    z-index: 10;
-    background-color: rgba(0,0,0,.05);
-    vertical-align: middle;
+    line-height: normal;
     text-align: center;
+    text-transform: none;
+    vertical-align: middle;
     width: 100%;
-    visibility: hidden;
+    z-index: 601;
 }
 .eflags-popup .overlay:before {
     content: '';
@@ -54,12 +56,15 @@
 .eflags-popup .popup {
     background-color: white;
     display: inline-block;
+    font-size: 14px;
     min-width: 200px;
     padding: 10px;
     position:relative;
     vertical-align: middle;
-    box-shadow: 2px 2px 7px #777;
+    box-shadow: 0 0 7px #777;
+    color: #333;
 }
+.eflags-popup .popup a { color: #333; text-transform: none; }
 .eflags-popup .popup h3 { margin-bottom: 12px; }
 .eflags-popup .popup .close {
     position: absolute;
@@ -72,4 +77,4 @@
 .eflags-popup .flag-link img { margin-right: 5px; }
 .eflags-popup .popup .flag-link { display: block; margin: 5px; padding: 5px; }
 .eflags-popup .popup .flag-link:hover { background-color: rgba(0, 0, 0, .05); }
-.eflags-popup .overlay:target { visibility: visible; }
+.eflags-popup .overlay:target { display: block; }

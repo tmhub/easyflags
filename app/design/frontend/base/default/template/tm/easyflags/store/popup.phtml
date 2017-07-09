@@ -1,0 +1,32 @@
+<?php if (count($this->getGroups())>1): ?>
+<?php
+    $classes = 'eflags-popup';
+    if (Mage::getStoreConfig('easy_flags/store_switcher/move')) {
+        $classes .= ' eflags-stores-moved';
+    }
+    $currentSite = Mage::app()->getWebsite();
+?>
+<div class="store-switcher <?php echo $classes;?>">
+    <?php if(Mage::helper('easyflags')->isLableStoreSwitcherEnabled()): ?>
+    <span class="eflags-label"><?php echo $this->__('Select Store:') ?></span>
+    <?php endif; ?>
+    <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($currentSite); ?>
+    <?php $storeName = $this->htmlEscape($currentSite->getName()); ?>
+    <a href="#website-popup" class="flag-link">
+        <?php if ($flagSrc):?><img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/><?php endif;?><span><?php echo $storeName; ?></span>
+    </a>
+    <div id="website-popup" class="overlay">
+        <div class="popup">
+            <h3><?php echo $this->__('Select Store') ?></h3>
+            <a class="close" href="#">&times;</a>
+            <?php foreach ($this->getGroups() as $_group): ?>
+                <?php $flagSrc = Mage::helper('easyflags')->getImageUrl($_group); ?>
+                <?php $storeName = $this->htmlEscape($_group->getName()); ?>
+                <a href="<?php echo $_group->getHomeUrl() ?>" title="<?php echo $storeName; ?>" class="flag-link">
+                <?php if ($flagSrc): ?><img src="<?php echo $flagSrc;?>" alt="<?php echo $storeName;?>"/><?php endif;?><span><?php echo $storeName;?></span>
+                </a>
+            <?php endforeach; ?>
+        </div>
+    </div>
+</div>
+<?php endif; ?>
