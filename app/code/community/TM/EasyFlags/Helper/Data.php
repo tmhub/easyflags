@@ -50,22 +50,6 @@ class TM_EasyFlags_Helper_Data extends Mage_Core_Helper_Abstract
             . $image;
     }
 
-    /**
-     * get easyflags image path for store or store group
-     *
-     * @param  mixed $object Mage_Core_Model_Store|..._Store_Group
-     * @return string
-     */
-    public function getImagePath($object)
-    {
-        $image = $this->getImage($object);
-        if (!$image) {
-            return '';
-        }
-        return $this->getBaseDir()
-            . $image;
-    }
-
     public function getBaseDir()
     {
         return rtrim(Mage::getBaseDir('media'), DS)
