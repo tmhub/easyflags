@@ -107,15 +107,17 @@ class TM_EasyFlags_Model_Observer
             return;
         }
 
-        $storeObject->setEasyflagsImage(
-                $this->getRequest()->getPost($this->_fieldNameInForm)
-            );
-
-        $this->_uploadImage($storeObject);
         $easyflagsModel = Mage::getModel($modelName)
-            ->setId($storeObject->getId())
-            ->setImage($storeObject->getEasyflagsImage());
+            ->load($storeObject->getId())
+            ->setId($storeObject->getId());
+        $image = $this->getRequest()->getPost($this->_fieldNameInForm);
+        if (is_array($image)) {
+            $image['value'] = $easyflagsModel->getImage();
+        }
 
+        $storeObject->setEasyflagsImage($image);
+        $this->_uploadImage($storeObject);
+        $easyflagsModel->setImage($storeObject->getEasyflagsImage());
         $this->_saveFlags($easyflagsModel);
 
     }
@@ -127,42 +129,19 @@ class TM_EasyFlags_Model_Observer
 
     protected function _uploadImage($object)
     {
-        $newImage = isset($_FILES[$this->_fieldNameInForm]) ?
-            $_FILES[$this->_fieldNameInForm] : false;
-
-        $oldImage = $object->getEasyflagsImage();
-
-
-        // check if we should delete old image
-        if (is_array($oldImage) && !empty($oldImage['delete'])) {
-            $oldImagePath = $this->_helper()->getImagePath($object);
-            @unlink($oldImagePath);
-            $object->setEasyflagsImage('');
+        if ($uploader = @Mage::getModel('tmcore/image_uploader')) {
+            $mediaDir = Mage::getStoreConfig('easy_flags/general/media_dir');
+            $uploader->setDirectory($mediaDir)
+                ->upload($object, $this->_fieldNameInForm);
         } else {
-            $object->setEasyflagsImage($this->_helper()->getImage($object));
+            $this->_getSession()
+                ->addWarning(
+                    $this->_helper()
+                        ->__("We can't upload image. Seems like you need to update TM Core module.")
+                );
         }
 
-        if (isset($newImage['name']) && $newImage['name']) {
-            try {
-                $uploader = new Varien_File_Uploader($this->_fieldNameInForm);
-                $uploader->setAllowedExtensions(
-                        array('jpg','jpeg','gif','png', 'bmp')
-                    );
-                $uploader->setAllowRenameFiles(true);
-                if (@class_exists('Mage_Core_Model_File_Validator_Image')) {
-                    $uploader->addValidateCallback(
-                        Mage_Core_Model_File_Validator_Image::NAME,
-                        Mage::getModel('core/file_validator_image'),
-                        'validate'
-                    );
-                }
-                $uploader->save($this->_helper()->getBaseDir());
-                $object->setEasyflagsImage($uploader->getUploadedFileName());
-            } catch (Exception $e) {
-                $object->setEasyflagsImage('');
-                throw $e;
-            }
-        }
+        return $this;
     }
 
     protected function _saveFlags($object)
